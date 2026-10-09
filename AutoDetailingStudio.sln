@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDetailingStudio.Web", "AutoDetailingStudio.Web\AutoDetailingStudio.Web.csproj", "{C494DE11-293D-4B51-B42D-ABB33FE21EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoDetailingStudio.Data", "AutoDetailingStudio.Data\AutoDetailingStudio.Data.csproj", "{73C17722-32F7-4220-BFCD-B9A02ED5F1DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C494DE11-293D-4B51-B42D-ABB33FE21EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C494DE11-293D-4B51-B42D-ABB33FE21EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C494DE11-293D-4B51-B42D-ABB33FE21EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C494DE11-293D-4B51-B42D-ABB33FE21EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73C17722-32F7-4220-BFCD-B9A02ED5F1DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C17722-32F7-4220-BFCD-B9A02ED5F1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C17722-32F7-4220-BFCD-B9A02ED5F1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C17722-32F7-4220-BFCD-B9A02ED5F1DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
