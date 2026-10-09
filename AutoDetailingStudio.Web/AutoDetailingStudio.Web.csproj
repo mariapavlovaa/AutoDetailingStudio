@@ -7,9 +7,6 @@
         <UserSecretsId>aspnet-AutoDetailingStudio-93eee2dd-9e5b-4f4d-86a1-272bc6eacd54</UserSecretsId>
     </PropertyGroup>
 
-    <ItemGroup>
-        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.31"/>
