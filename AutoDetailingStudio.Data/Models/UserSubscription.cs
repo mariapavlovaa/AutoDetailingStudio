@@ -11,16 +11,19 @@ public class UserSubscription
     [Required]
     public string UserId { get; set; } = null!;
 
+    [ForeignKey(nameof(UserId))]
     public virtual User User { get; set; } = null!;
     
     public int SubscriptionId { get; set; }
+    [ForeignKey(nameof(SubscriptionId))]
     public virtual Subscription Subscription { get; set; } = null!;
 
     public DateTime StartDate { get; set; } = DateTime.UtcNow;
     [Range(SubscriptionDurationMonthMinValue, SubscriptionDurationMonthMaxValue)]
     public int DurationMonths { get; set; }
 
-    [NotMapped] public DateTime EndDate => StartDate.AddMonths(this.DurationMonths);
+    [NotMapped] 
+    public DateTime EndDate => StartDate.AddMonths(this.DurationMonths);
 
     //is subscription deactivated
     public bool IsActive { get; set; } = true;

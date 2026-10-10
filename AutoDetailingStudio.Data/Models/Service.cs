@@ -23,5 +23,7 @@ public class Service
 
     public bool IsActive { get; set; }=true;
 
+    public virtual ICollection<Appointment> Appointments { get; set; }
+        = new HashSet<Appointment>();
     
 }

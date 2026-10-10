@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace AutoDetailingStudio.Data.Models;
 using static Common.EntityValidation.Subscription;
 public class Subscription
@@ -23,6 +21,8 @@ public class Subscription
     public decimal DiscountPercent { get; set; }
     public bool IsActive { get; set; } = true;
     
+    public virtual ICollection<UserSubscription> UserSubscriptions { get; set; }
+        = new HashSet<UserSubscription>();
 
     
 

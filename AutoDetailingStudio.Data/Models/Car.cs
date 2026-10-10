@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using AutoDetailingStudio.Data.Models.Common;
 using AutoDetailingStudio.Data.Models.Enums;
 
@@ -12,6 +13,7 @@ public class Car
     [Required] 
     public string UserId { get; set; } = null!;
     
+    [ForeignKey(nameof(UserId))]
     public virtual User User { get; set; } = null!;
     
     [Required]
@@ -28,5 +30,7 @@ public class Car
     
     public VehicleType VehicleType { get; set; }
 
+    public virtual ICollection<Appointment> Appointments { get; set; }
+        = new HashSet<Appointment>();
 
 }
