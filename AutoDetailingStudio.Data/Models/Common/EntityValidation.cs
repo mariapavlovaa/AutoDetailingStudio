@@ -34,7 +34,9 @@
                         public const string ServicePriceMinValue = "0.01";
                         public const int DurationMinutesMinValue = 1;
                         public const int DurationMinutesMaxValue = 1440;
-                        
+                        public const int ServicePricePrecision = 6;
+                        public const int ServicePriceScale = 2;
+
 
                 }
                 
@@ -51,12 +53,18 @@
                         public const int  SubscriptionDescriptionMaxLength=500;
 
                         public const string SubscriptionPriceMinValue = "0.01";
-                        public const string SubscriptionPriceMaxValue = "1000.00";
+                        public const string SubscriptionPriceMaxValue = "3000.00";
 
                         public const string SubscriptionDiscountPercentMinValue = "0.1";
                         public const string SubscriptionDiscountPercentMaxValue = "0.99";
 
-                      
+                        public const int SubscriptionPricePrecision = 6;
+                        public const int SubscriptionPriceScale = 2;
+
+                        public const int DiscountPercentPrecision = 5;
+                        public const int DiscountPercentScale = 2;
+
+
 
 
 
@@ -67,7 +75,10 @@
                 public const int SubscriptionDurationMonthMaxValue = 12;
                 public const string TotalPriceMinValue = "0.01";
                 public const string TotalPriceMaxValue = "1000.00";
+                public const int TotalPricePrecision = 18;
+                public const int TotalPriceScale = 2;
                 
+
                 }
                 
         }

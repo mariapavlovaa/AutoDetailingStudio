@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Data.Models;
 using static Common.EntityValidation.UserSubscription;
@@ -35,6 +36,7 @@ public class UserSubscription
         IsActive && DateTime.UtcNow < EndDate;
     //it will be calculated runtime in service layer 
     [Range(typeof(decimal), TotalPriceMinValue, TotalPriceMaxValue)]
+    [Precision(TotalPricePrecision, TotalPriceScale)]
     public decimal TotalPricePaid { get; set; }
     
     [NotMapped]

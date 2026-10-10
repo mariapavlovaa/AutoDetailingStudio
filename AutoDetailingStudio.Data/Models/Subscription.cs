@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+
 namespace AutoDetailingStudio.Data.Models;
 using static Common.EntityValidation.Subscription;
 public class Subscription
@@ -16,8 +18,10 @@ public class Subscription
     public string? Description { get; set; } 
     
     [Range(typeof(decimal),SubscriptionPriceMinValue, SubscriptionPriceMaxValue)]
+    [Precision(SubscriptionPricePrecision, SubscriptionPriceScale)]
     public decimal Price { get; set; }
     [Range(typeof(decimal),SubscriptionDiscountPercentMinValue, SubscriptionDiscountPercentMaxValue)]
+    [Precision(DiscountPercentPrecision, DiscountPercentScale)]
     public decimal DiscountPercent { get; set; }
     public bool IsActive { get; set; } = true;
     

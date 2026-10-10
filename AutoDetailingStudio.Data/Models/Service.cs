@@ -1,4 +1,5 @@
-using System.ComponentModel.DataAnnotations;    
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Data.Models;
 using static Common.EntityValidation.Service;
@@ -17,6 +18,7 @@ public class Service
     [MinLength(ServiceDescriptionMinLength)]
     public string Description { get; set; } = null!;
     [Range(typeof(decimal), ServicePriceMinValue, ServicePriceMaxValue)]
+    [Precision(ServicePricePrecision, ServicePriceScale)]
     public decimal Price { get; set; }
     [Range(DurationMinutesMinValue, DurationMinutesMaxValue)]
     public int DurationMinutes { get; set; }
