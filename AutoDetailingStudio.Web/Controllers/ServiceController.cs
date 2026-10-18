@@ -39,9 +39,26 @@ public class ServiceController : Controller
     [HttpGet]
     public IActionResult Details(int id)
     {
+
+        ServiceDetailsViewModel? model = _context.Services
+            .AsNoTracking()
+            .Where(s => s.Id == id && s.IsActive)
+            .Select(s => new ServiceDetailsViewModel
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Description = s.Description,
+                Price = s.Price,
+                DurationMinutes = s.DurationMinutes,
+                ImageUrl = s.ImageUrl
+            })
+            .FirstOrDefault();
         
-        
-        return View();
+        if (model is null)
+        {
+            return NotFound("Service with this Id doesn't exists.");
+        }
+        return View(model);
 
     }
 }

@@ -1,0 +1,62 @@
+@model AutoDetailingStudio.Web.Models.Service.ServiceDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="service-details">
+
+    <a asp-controller="Service"
+       asp-action="Index"
+       class="back-link">
+        ← Back to Services
+    </a>
+
+    <div class="row g-5 align-items-center">
+
+        <div class="col-12 col-lg-6">
+            <div class="details-image-wrapper">
+                <img src="@(Model.ImageUrl ?? "/images/placeholder.jpg")"
+                     alt="@Model.Name"
+                     class="details-image" />
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="details-content">
+
+                <span class="details-label">
+                    PREMIUM AUTO DETAILING
+                </span>
+
+                <h1 class="details-title">
+                    @Model.Name
+                </h1>
+
+                <div class="details-divider"></div>
+
+                <p class="details-description">
+                    @Model.Description
+                </p>
+
+                <div class="details-info">
+                    <div class="info-item">
+                        <span class="info-label">Price</span>
+                        <span class="info-value details-price">
+                            @Model.Price.ToString("F2") €
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Duration</span>
+                        <span class="info-value">
+                            @Model.DurationMinutes minutes
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
