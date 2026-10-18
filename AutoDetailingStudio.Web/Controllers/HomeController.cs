@@ -1,21 +1,41 @@
 using System.Diagnostics;
+using AutoDetailingStudio.Data;
 using Microsoft.AspNetCore.Mvc;
 using AutoDetailingStudio.Web.Models;
+using AutoDetailingStudio.Web.Models.Service;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Web.Controllers;
-
+using static ApplicationConstants;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+         IEnumerable<ServiceAllViewModel> allServices = _context.Services
+            .AsNoTracking()
+            .Where(s => s.IsActive)
+            .OrderBy(s=>s.Name)
+            .ThenBy(s=>s.Price)
+            .ThenBy(s=>s.Id)
+            .Select(s => new ServiceAllViewModel()
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Price = s.Price,
+                ImageUrl = s.ImageUrl
+            })
+            .Take(EntitiesPerPage)
+            .ToList();
+        return View(allServices);
     }
 
     public IActionResult Privacy()

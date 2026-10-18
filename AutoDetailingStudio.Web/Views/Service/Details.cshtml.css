@@ -1,0 +1,120 @@
+
+.service-details {
+    background-color: #f8f6f2;
+    padding: 45px;
+    margin: 30px 0;
+    border-radius: 12px;
+    min-height: 550px;
+}
+
+/* Back link */
+
+.back-link {
+    display: inline-block;
+    color: #a78750;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 35px;
+}
+
+.back-link:hover {
+    color: #24272b;
+    text-decoration: none;
+}
+
+/* Image */
+
+.details-image-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+.details-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content */
+
+.details-content {
+    padding: 15px 0;
+}
+
+.details-label {
+    color: #a78750;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.details-title {
+    color: #24272b;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin: 15px 0 20px;
+}
+
+.details-divider {
+    width: 65px;
+    height: 2px;
+    background-color: #b99a63;
+    margin-bottom: 25px;
+}
+
+.details-description {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 35px;
+}
+
+/* Price and duration */
+
+.details-info {
+    display: flex;
+    gap: 45px;
+    padding-top: 25px;
+    border-top: 1px solid #ded9d0;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-label {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.info-value {
+    color: #24272b;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.details-price {
+    color: #a78750;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+    .service-details {
+        padding: 25px 18px;
+    }
+
+    .details-image {
+        height: 260px;
+    }
+
+    .details-info {
+        gap: 30px;
+    }
+}
