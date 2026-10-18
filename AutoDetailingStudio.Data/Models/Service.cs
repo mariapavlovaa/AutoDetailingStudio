@@ -16,7 +16,13 @@ public class Service
     [Required] 
     [MaxLength(ServiceDescriptionMaxLength)]
     [MinLength(ServiceDescriptionMinLength)]
-    public string Description { get; set; } = null!;
+    
+     public string Description { get; set; } = null!;
+     
+    [MaxLength(ImageUrlMaxLength)]
+    public string? ImageUrl { get; set; }
+    
+   
     [Range(typeof(decimal), ServicePriceMinValue, ServicePriceMaxValue)]
     [Precision(ServicePricePrecision, ServicePriceScale)]
     public decimal Price { get; set; }
