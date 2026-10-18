@@ -29,7 +29,84 @@
                         </a>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
 </section>
+
+
+@model IEnumerable<AutoDetailingStudio.Web.Models.Service.ServiceAllViewModel>
+
+<section class="home-services">
+    <div class="home-services-header">
+        <div>
+            <span class="home-services-label">WHAT WE OFFER</span>
+            <h2>Our Services</h2>
+            <p>Discover professional care for your vehicle.</p>
+        </div>
+
+        <div class="carousel-controls">
+            <button type="button"
+                    class="carousel-arrow"
+                    id="servicesPrev"
+                    aria-label="Previous service">
+                &#8592;
+            </button>
+
+            <button type="button"
+                    class="carousel-arrow"
+                    id="servicesNext"
+                    aria-label="Next service">
+                &#8594;
+            </button>
+        </div>
+    </div>
+
+    <div class="services-viewport" id="servicesViewport">
+        <div class="services-track">
+            @foreach (var service in Model)
+            {
+                <article class="home-service-card">
+                    <img src="@(service.ImageUrl ?? "/images/placeholder.jpg")"
+                         alt="@service.Name" />
+
+                    <div class="home-service-content">
+                        <h3>@service.Name</h3>
+                        <p>@service.Price.ToString("F2") €</p>
+
+                        <a asp-controller="Service"
+                           asp-action="Details"
+                           asp-route-id="@service.Id">
+                            Explore Service →
+                        </a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        const viewport = document.getElementById('servicesViewport');
+        const previous = document.getElementById('servicesPrev');
+        const next = document.getElementById('servicesNext');
+
+        function moveServices(direction) {
+            const card = viewport.querySelector('.home-service-card');
+            if (!card) return;
+
+            const track = viewport.querySelector('.services-track');
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+            viewport.scrollBy({
+                left: direction * (card.getBoundingClientRect().width + gap),
+                behavior: 'smooth'
+            });
+        }
+
+        previous.addEventListener('click', () => moveServices(-1));
+        next.addEventListener('click', () => moveServices(1));
+    </script>
+}
