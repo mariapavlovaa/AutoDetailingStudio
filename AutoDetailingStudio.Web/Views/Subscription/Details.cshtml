@@ -1,0 +1,54 @@
+@model AutoDetailingStudio.Web.Models.Subscription.SubscriptionDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="subscription-details">
+
+    <a asp-controller="Subscription"
+       asp-action="Index"
+       class="back-link">
+        ← Back to Subscriptions
+    </a>
+
+    <div class="details-header">
+        <span class="details-label">EXCLUSIVE MEMBERSHIP</span>
+
+        <h1 class="details-title">
+            @Model.Name
+        </h1>
+
+        <div class="details-divider"></div>
+
+        <p class="details-description">
+            @Model.Description
+        </p>
+    </div>
+
+    <div class="details-card">
+
+        <div class="details-info">
+            <div class="info-item">
+                <span class="info-label">Plan Price</span>
+                <span class="info-value details-price">
+                    @Model.Price.ToString("F2") €
+                </span>
+            </div>
+
+            <div class="info-item">
+                <span class="info-label">Service Discount</span>
+                <span class="info-value details-discount">
+                    @Model.DiscountPercent.ToString("0.##")%
+                </span>
+            </div>
+        </div>
+
+        <p class="details-note">
+            Enjoy exclusive savings on our professional
+            auto detailing services.
+        </p>
+
+    </div>
+
+</section>

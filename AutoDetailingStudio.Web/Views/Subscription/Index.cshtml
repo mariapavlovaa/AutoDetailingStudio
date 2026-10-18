@@ -1,0 +1,59 @@
+@model IEnumerable<AutoDetailingStudio.Web.Models.Subscription.SubscriptionAllViewModel>
+
+@{
+    ViewData["Title"] = "Our Subscriptions";
+}
+
+<section class="subscriptions-page">
+
+    <div class="subscriptions-header">
+        <span class="subscriptions-label">AUTO DETAILING STUDIO</span>
+
+        <h1 class="subscriptions-title">Our Subscriptions</h1>
+
+        <p class="subscriptions-subtitle">
+            Choose the membership that suits your needs
+            and enjoy exclusive detailing benefits.
+        </p>
+
+        <div class="subscriptions-divider"></div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        @foreach (var subscription in Model)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="subscription-card h-100">
+
+                    <div class="subscription-content">
+
+                        <span class="plan-label">MEMBERSHIP PLAN</span>
+
+                        <h2 class="subscription-name">
+                            @subscription.Name
+                        </h2>
+
+                        <div class="subscription-divider"></div>
+
+                        <p class="subscription-price">
+                            @subscription.Price.ToString("F2") €
+                        </p>
+
+                        <p class="subscription-caption">
+                            Discover the benefits of this plan.
+                        </p>
+
+                        <a asp-controller="Subscription"
+                           asp-action="Details"
+                           asp-route-id="@subscription.Id"
+                           class="subscription-btn">
+                            Explore Plan <span aria-hidden="true">→</span>
+                        </a>
+
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+
+</section>

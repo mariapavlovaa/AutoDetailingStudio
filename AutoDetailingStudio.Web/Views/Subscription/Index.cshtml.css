@@ -1,0 +1,128 @@
+
+.subscriptions-page {
+    background-color: #f8f6f2;
+    padding: 65px 45px 85px;
+    margin: 30px 0;
+    border-radius: 12px;
+}
+
+/* Header */
+
+.subscriptions-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.subscriptions-label {
+    display: block;
+    color: #a78750;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.subscriptions-title {
+    color: #24272b;
+    font-size: clamp(2.2rem, 4vw, 3.3rem);
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.subscriptions-subtitle {
+    color: #777;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.subscriptions-divider {
+    width: 65px;
+    height: 2px;
+    background-color: #b99a63;
+    margin: 25px auto 0;
+}
+
+/* Cards */
+
+.subscription-card {
+    background-color: #fff;
+    border: 1px solid #ece8e1;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.subscription-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.09);
+}
+
+.subscription-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 35px 28px;
+}
+
+.plan-label {
+    color: #a78750;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.subscription-name {
+    color: #24272b;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.subscription-divider {
+    width: 40px;
+    height: 2px;
+    background: #b99a63;
+    margin: 20px 0;
+}
+
+.subscription-price {
+    color: #a78750;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.subscription-caption {
+    color: #777;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+/* Button */
+
+.subscription-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding: 12px 18px;
+    background-color: #24272b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.subscription-btn:hover {
+    background-color: #a78750;
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .subscriptions-page {
+        padding: 40px 18px;
+    }
+}

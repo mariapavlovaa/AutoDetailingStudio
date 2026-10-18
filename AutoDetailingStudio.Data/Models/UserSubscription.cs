@@ -30,10 +30,12 @@ public class UserSubscription
     public bool IsActive { get; set; } = true;
     
     // Indicates whether the subscription period has expired.
+    
     [NotMapped]
     public bool IsCurrentlyActive =>
         DateTime.UtcNow >= StartDate &&
         IsActive && DateTime.UtcNow < EndDate;
+    
     //it will be calculated runtime in service layer 
     [Range(typeof(decimal), TotalPriceMinValue, TotalPriceMaxValue)]
     [Precision(TotalPricePrecision, TotalPriceScale)]
