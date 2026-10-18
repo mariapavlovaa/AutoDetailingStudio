@@ -6,6 +6,7 @@ namespace AutoDetailingStudio.Data.Configuration;
 
 public class ServiceConfiguration:IEntityTypeConfiguration<Service>
 {
+    
     private readonly List<Service> services = new List<Service>
     {
         new Service
@@ -13,6 +14,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 1,
             Name = "Exterior Wash",
             Description = "Professional exterior wash, wheel cleaning and drying.",
+            ImageUrl = "/images/exterior-wash.jpg",
             Price = 30.00m,
             DurationMinutes = 30,
             IsActive = true
@@ -22,6 +24,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 2,
             Name = "Interior Cleaning",
             Description = "Vacuuming, dashboard cleaning and interior surface treatment.",
+            ImageUrl = "/images/interior-cleaning.jpg",
             Price = 50.00m,
             DurationMinutes = 60,
             IsActive = true
@@ -31,6 +34,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 3,
             Name = "Full Car Wash",
             Description = "Complete exterior and interior vehicle cleaning.",
+            ImageUrl = "/images/full-car-wash.jpg",
             Price = 75.00m,
             DurationMinutes = 90,
             IsActive = true
@@ -40,6 +44,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 4,
             Name = "Interior Detailing",
             Description = "Deep cleaning of seats, carpets and upholstery.",
+            ImageUrl = "/images/interior-detailing.jpg",
             Price = 180.00m,
             DurationMinutes = 180,
             IsActive = true
@@ -49,6 +54,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 5,
             Name = "Paint Polishing",
             Description = "Machine polishing to reduce scratches and restore paint gloss.",
+            ImageUrl = "/images/paint-polishing.jpg",
             Price = 350.00m,
             DurationMinutes = 300,
             IsActive = true
@@ -58,11 +64,14 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
             Id = 6,
             Name = "Ceramic Coating",
             Description = "Application of protective ceramic coating for long-lasting paint protection.",
+            ImageUrl = "/images/ceramic-coating.jpg",
             Price = 650.00m,
             DurationMinutes = 480,
             IsActive = true
         }
     };
+
+    
     public void Configure(EntityTypeBuilder<Service> builder)
     {
         builder.HasData(services);
