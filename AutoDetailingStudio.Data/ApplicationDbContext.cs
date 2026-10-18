@@ -20,11 +20,15 @@ public class ApplicationDbContext:IdentityDbContext<User>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        
         base.OnModelCreating(builder);
         builder.Entity<Appointment>()
             .HasOne(a => a.Car)
             .WithMany(c => c.Appointments)
             .HasForeignKey(a => a.CarId)
             .OnDelete(DeleteBehavior.NoAction);
+        
+
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }
