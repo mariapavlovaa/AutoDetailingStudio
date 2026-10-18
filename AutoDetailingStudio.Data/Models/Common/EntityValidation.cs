@@ -36,6 +36,7 @@
                         public const int DurationMinutesMaxValue = 1440;
                         public const int ServicePricePrecision = 6;
                         public const int ServicePriceScale = 2;
+                        public const int ImageUrlMaxLength = 500;
 
 
                 }
