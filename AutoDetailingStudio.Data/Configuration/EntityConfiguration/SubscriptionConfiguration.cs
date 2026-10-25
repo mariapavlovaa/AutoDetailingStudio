@@ -1,4 +1,3 @@
-using AutoDetailingStudio.Data.Models.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using AutoDetailingStudio.Data.Models;

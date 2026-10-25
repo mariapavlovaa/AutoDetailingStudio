@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using AutoDetailingStudio.Common;
 using AutoDetailingStudio.Data;
 using Microsoft.AspNetCore.Mvc;
 using AutoDetailingStudio.Web.Models;

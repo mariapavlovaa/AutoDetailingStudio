@@ -1,3 +1,4 @@
+using AutoDetailingStudio.Common;
 using AutoDetailingStudio.Data;
 using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Web.Models.Service;

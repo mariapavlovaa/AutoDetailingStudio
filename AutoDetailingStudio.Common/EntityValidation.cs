@@ -1,7 +1,5 @@
-        using Microsoft.Data.SqlClient.DataClassification;
-        using Microsoft.EntityFrameworkCore.Storage.Internal;
-
-        namespace AutoDetailingStudio.Data.Models.Common;
+ 
+        namespace AutoDetailingStudio.Common;
 
         public static class EntityValidation
         {

@@ -20,6 +20,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AutoDetailingStudio.Data\AutoDetailingStudio.Data.csproj" />
+      <ProjectReference Include="..\AutoDetailingStudio.Services.Core\AutoDetailingStudio.Services.Core.csproj" />
+      <ProjectReference Include="..\AutoDetailingStudio.ViewModels\AutoDetailingStudio.ViewModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>
