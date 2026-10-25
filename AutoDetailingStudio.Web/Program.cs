@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoDetailingStudio.Data;
 using AutoDetailingStudio.Data.Models;
+using AutoDetailingStudio.Services.Core;
+using AutoDetailingStudio.Services.Core.Contracts;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IServiceService, ServiceService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
