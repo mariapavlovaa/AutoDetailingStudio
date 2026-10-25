@@ -24,8 +24,4 @@
       <ProjectReference Include="..\AutoDetailingStudio.ViewModels\AutoDetailingStudio.ViewModels.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Models\" />
-    </ItemGroup>
-
 </Project>
