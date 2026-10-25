@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Web;
+namespace AutoDetailingStudio.Common;
 
 public static class ApplicationConstants
 {

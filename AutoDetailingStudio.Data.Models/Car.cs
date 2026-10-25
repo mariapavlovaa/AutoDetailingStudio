@@ -1,10 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AutoDetailingStudio.Data.Models.Common;
 using AutoDetailingStudio.Data.Models.Enums;
 
 namespace AutoDetailingStudio.Data.Models;
-using static EntityValidation.Car;
+using static AutoDetailingStudio.Common.EntityValidation.Car;
 public class Car
 {
     [Key]

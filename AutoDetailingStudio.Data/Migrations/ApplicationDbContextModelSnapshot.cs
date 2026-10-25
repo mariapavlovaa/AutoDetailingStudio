@@ -17,7 +17,7 @@ namespace AutoDetailingStudio.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.31")
+                .HasAnnotation("ProductVersion", "8.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -330,6 +330,26 @@ namespace AutoDetailingStudio.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin-user",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "admin-concurrency-stamp",
+                            Email = "admin@autodetailingstudio.com",
+                            EmailConfirmed = true,
+                            FirstName = "System",
+                            LastName = "Administrator",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@AUTODETAILINGSTUDIO.COM",
+                            NormalizedUserName = "ADMIN@AUTODETAILINGSTUDIO.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECj4mF/MvU2l4sPYabNt6j/1+dfZtBSSs7zbcAmBf47xv1a1uvkb56ixiuOuXppU8Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "admin-security-stamp",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@autodetailingstudio.com"
+                        });
                 });
 
             modelBuilder.Entity("AutoDetailingStudio.Data.Models.UserSubscription", b =>
@@ -394,6 +414,15 @@ namespace AutoDetailingStudio.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin-role",
+                            ConcurrencyStamp = "admin-role-stamp",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -483,6 +512,13 @@ namespace AutoDetailingStudio.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "admin-user",
+                            RoleId = "admin-role"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
