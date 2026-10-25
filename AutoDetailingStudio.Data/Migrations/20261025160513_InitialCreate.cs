@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AutoDetailingStudio.Data.Migrations
 {
     /// <inheritdoc />
@@ -60,7 +62,8 @@ namespace AutoDetailingStudio.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(6,2)", precision: 6, scale: 2, nullable: false),
                     DurationMinutes = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -77,8 +80,8 @@ namespace AutoDetailingStudio.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DiscountPercent = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(6,2)", precision: 6, scale: 2, nullable: false),
+                    DiscountPercent = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -225,7 +228,7 @@ namespace AutoDetailingStudio.Data.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DurationMonths = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    TotalPricePaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    TotalPricePaid = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -279,6 +282,44 @@ namespace AutoDetailingStudio.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "admin-role", "admin-role-stamp", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "admin-user", 0, "admin-concurrency-stamp", "admin@autodetailingstudio.com", true, "System", "Administrator", false, null, "ADMIN@AUTODETAILINGSTUDIO.COM", "ADMIN@AUTODETAILINGSTUDIO.COM", "AQAAAAIAAYagAAAAECj4mF/MvU2l4sPYabNt6j/1+dfZtBSSs7zbcAmBf47xv1a1uvkb56ixiuOuXppU8Q==", null, false, "admin-security-stamp", false, "admin@autodetailingstudio.com" });
+
+            migrationBuilder.InsertData(
+                table: "Services",
+                columns: new[] { "Id", "Description", "DurationMinutes", "ImageUrl", "IsActive", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Professional exterior wash, wheel cleaning and drying.", 30, "/images/exterior-wash.jpg", true, "Exterior Wash", 30.00m },
+                    { 2, "Vacuuming, dashboard cleaning and interior surface treatment.", 60, "/images/interior-cleaning.jpg", true, "Interior Cleaning", 50.00m },
+                    { 3, "Complete exterior and interior vehicle cleaning.", 90, "/images/full-car-wash.jpg", true, "Full Car Wash", 75.00m },
+                    { 4, "Deep cleaning of seats, carpets and upholstery.", 180, "/images/interior-detailing.jpg", true, "Interior Detailing", 180.00m },
+                    { 5, "Machine polishing to reduce scratches and restore paint gloss.", 300, "/images/paint-polishing.jpg", true, "Paint Polishing", 350.00m },
+                    { 6, "Application of protective ceramic coating for long-lasting paint protection.", 480, "/images/ceramic-coating.jpg", true, "Ceramic Coating", 650.00m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subscriptions",
+                columns: new[] { "Id", "Description", "DiscountPercent", "IsActive", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Basic car care subscription with a 5% discount on all services.", 5.00m, true, "Basic", 29.99m },
+                    { 2, "Premium car care subscription with a 10% discount on all services.", 10.00m, true, "Premium", 59.99m },
+                    { 3, "VIP car care subscription with a 20% discount on all services.", 20.00m, true, "VIP", 99.99m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "admin-role", "admin-user" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_CarId",

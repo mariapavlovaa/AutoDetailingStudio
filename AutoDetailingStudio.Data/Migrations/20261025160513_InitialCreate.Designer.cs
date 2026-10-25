@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoDetailingStudio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261018082911_AddServiceImageUrl")]
-    partial class AddServiceImageUrl
+    [Migration("20261025160513_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.31")
+                .HasAnnotation("ProductVersion", "8.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -134,6 +134,68 @@ namespace AutoDetailingStudio.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Professional exterior wash, wheel cleaning and drying.",
+                            DurationMinutes = 30,
+                            ImageUrl = "/images/exterior-wash.jpg",
+                            IsActive = true,
+                            Name = "Exterior Wash",
+                            Price = 30.00m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Vacuuming, dashboard cleaning and interior surface treatment.",
+                            DurationMinutes = 60,
+                            ImageUrl = "/images/interior-cleaning.jpg",
+                            IsActive = true,
+                            Name = "Interior Cleaning",
+                            Price = 50.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Complete exterior and interior vehicle cleaning.",
+                            DurationMinutes = 90,
+                            ImageUrl = "/images/full-car-wash.jpg",
+                            IsActive = true,
+                            Name = "Full Car Wash",
+                            Price = 75.00m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Deep cleaning of seats, carpets and upholstery.",
+                            DurationMinutes = 180,
+                            ImageUrl = "/images/interior-detailing.jpg",
+                            IsActive = true,
+                            Name = "Interior Detailing",
+                            Price = 180.00m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Machine polishing to reduce scratches and restore paint gloss.",
+                            DurationMinutes = 300,
+                            ImageUrl = "/images/paint-polishing.jpg",
+                            IsActive = true,
+                            Name = "Paint Polishing",
+                            Price = 350.00m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Application of protective ceramic coating for long-lasting paint protection.",
+                            DurationMinutes = 480,
+                            ImageUrl = "/images/ceramic-coating.jpg",
+                            IsActive = true,
+                            Name = "Ceramic Coating",
+                            Price = 650.00m
+                        });
                 });
 
             modelBuilder.Entity("AutoDetailingStudio.Data.Models.Subscription", b =>
@@ -167,6 +229,35 @@ namespace AutoDetailingStudio.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscriptions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Basic car care subscription with a 5% discount on all services.",
+                            DiscountPercent = 5.00m,
+                            IsActive = true,
+                            Name = "Basic",
+                            Price = 29.99m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Premium car care subscription with a 10% discount on all services.",
+                            DiscountPercent = 10.00m,
+                            IsActive = true,
+                            Name = "Premium",
+                            Price = 59.99m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "VIP car care subscription with a 20% discount on all services.",
+                            DiscountPercent = 20.00m,
+                            IsActive = true,
+                            Name = "VIP",
+                            Price = 99.99m
+                        });
                 });
 
             modelBuilder.Entity("AutoDetailingStudio.Data.Models.User", b =>
@@ -242,6 +333,26 @@ namespace AutoDetailingStudio.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin-user",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "admin-concurrency-stamp",
+                            Email = "admin@autodetailingstudio.com",
+                            EmailConfirmed = true,
+                            FirstName = "System",
+                            LastName = "Administrator",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@AUTODETAILINGSTUDIO.COM",
+                            NormalizedUserName = "ADMIN@AUTODETAILINGSTUDIO.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAECj4mF/MvU2l4sPYabNt6j/1+dfZtBSSs7zbcAmBf47xv1a1uvkb56ixiuOuXppU8Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "admin-security-stamp",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@autodetailingstudio.com"
+                        });
                 });
 
             modelBuilder.Entity("AutoDetailingStudio.Data.Models.UserSubscription", b =>
@@ -306,6 +417,15 @@ namespace AutoDetailingStudio.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin-role",
+                            ConcurrencyStamp = "admin-role-stamp",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -395,6 +515,13 @@ namespace AutoDetailingStudio.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "admin-user",
+                            RoleId = "admin-role"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
