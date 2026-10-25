@@ -16,9 +16,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
     {
-        options.SignIn.RequireConfirmedAccount = true;
+        ConfigureIdentityOptions(options, builder.Configuration);
     })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();  
 
 builder.Services.AddControllersWithViews();
 
@@ -50,3 +51,32 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+static void ConfigureIdentityOptions(IdentityOptions options,
+    IConfiguration configuration)
+{
+    options.Password.RequireLowercase =
+        configuration.GetValue<bool>("Identity:Password:RequireLowercase");
+
+    options.Password.RequireUppercase =
+        configuration.GetValue<bool>("Identity:Password:RequireUppercase");
+
+    options.Password.RequireNonAlphanumeric =
+        configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
+
+    options.Password.RequiredLength =
+        configuration.GetValue<int>("Identity:Password:RequiredLength");
+
+    options.Password.RequiredUniqueChars =
+        configuration.GetValue<int>("Identity:Password:RequiredUniqueChars");
+
+    options.User.RequireUniqueEmail =
+        configuration.GetValue<bool>("Identity:User:RequireUniqueEmail");
+    
+    options.Password.RequireDigit =
+        configuration.GetValue<bool>("Identity:Password:RequireDigit");
+
+    options.SignIn.RequireConfirmedAccount =
+        configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
+    
+}
