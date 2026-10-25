@@ -1,65 +1,166 @@
-using AutoDetailingStudio.Common;
-using AutoDetailingStudio.Data;
-using AutoDetailingStudio.Data.Models;
+using AutoDetailingStudio.Services.Core.Contracts;
+using AutoDetailingStudio.Services.Data.Service.Request;
+using AutoDetailingStudio.Services.Data.Service.Responce;
+using AutoDetailingStudio.ViewModels.Service;
 using AutoDetailingStudio.Web.Models.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 namespace AutoDetailingStudio.Web.Controllers;
-using static ApplicationConstants;
+
 public class ServiceController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IServiceService _service;
 
-    public ServiceController(ApplicationDbContext context)
+    public ServiceController(IServiceService service)
     {
-        _context = context;
+        _service = service;
     }
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        IEnumerable<ServiceAllViewModel> allServices = _context.Services
-            .AsNoTracking()
-            .Where(s => s.IsActive)
-            .OrderBy(s=>s.Name)
-            .ThenBy(s=>s.Price)
-            .ThenBy(s=>s.Id)
-            .Select(s => new ServiceAllViewModel()
+        IEnumerable<ServiceGetAllDto> allServices = await _service.GetAllAsync();
+        IEnumerable<ServiceAllViewModel> models = allServices.Select(s => new ServiceAllViewModel()
         {
             Id = s.Id,
+            ImageUrl = s.ImageUrl,
             Name = s.Name,
-            Price = s.Price,
-            ImageUrl = s.ImageUrl
-        })
-            .Take(EntitiesPerPage)
-            .ToList();
+            Price = s.Price
+        });
         
-        return View(allServices);
+        return View(models);
+
     }
 
     [HttpGet]
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
 
-        ServiceDetailsViewModel? model = _context.Services
-            .AsNoTracking()
-            .Where(s => s.Id == id && s.IsActive)
-            .Select(s => new ServiceDetailsViewModel
-            {
-                Id = s.Id,
-                Name = s.Name,
-                Description = s.Description,
-                Price = s.Price,
-                DurationMinutes = s.DurationMinutes,
-                ImageUrl = s.ImageUrl
-            })
-            .FirstOrDefault();
-        
-        if (model is null)
-        {
-            return NotFound("Service with this Id doesn't exists.");
-        }
-        return View(model);
+        ServiceDetailsDto? service = await _service.GetByIdAsync(id);
 
+        if (service is null)
+        {
+            return NotFound("Service with this Id doesn't exist.");
+        }
+
+        ServiceDetailsViewModel model = new ServiceDetailsViewModel
+        {
+            Id = service.Id,
+            Name = service.Name,
+            Description = service.Description,
+            Price = service.Price,
+            DurationMinutes = service.DurationMinutes,
+            ImageUrl = service.ImageUrl
+        };
+
+        return View(model);
     }
+    
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public IActionResult Create()
+    {
+        return View(new ServiceCreateViewModel());
+    }
+    
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ServiceCreateViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        ServiceCreateDto dto = new ServiceCreateDto
+        {
+            Name = model.Name,
+            Description = model.Description,
+            Price = model.Price,
+            DurationMinutes = model.DurationMinutes,
+            ImageUrl = model.ImageUrl
+        };
+
+        await _service.CreateAsync(dto);
+
+        return RedirectToAction(nameof(Index));
+    }
+    
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Edit(int id)
+    {
+        ServiceDetailsDto? service = await _service.GetByIdAsync(id);
+
+        if (service is null)
+        {
+            return NotFound("This service does not exist.");
+        }
+
+        ServiceEditViewModel model = new ServiceEditViewModel
+        {
+            Id = service.Id,
+            Name = service.Name,
+            Description = service.Description,
+            Price = service.Price,
+            DurationMinutes = service.DurationMinutes,
+            ImageUrl = service.ImageUrl
+        };
+
+        return View(model);
+    }
+    
+    
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, ServiceEditViewModel model)
+    {
+        if (id != model.Id)
+        {
+            return BadRequest();
+        }
+
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        ServiceEditDto dto = new ServiceEditDto
+        {
+            Id = model.Id,
+            Name = model.Name,
+            Description = model.Description,
+            Price = model.Price,
+            DurationMinutes = model.DurationMinutes,
+            ImageUrl = model.ImageUrl
+        };
+
+        bool isEdited = await _service.EditAsync(dto);
+
+        if (!isEdited)
+        {
+            return NotFound();
+        }
+
+        return RedirectToAction(nameof(Details), new { id = model.Id });
+    }
+    
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(int id)
+    {
+        bool isDeleted = await _service.DeleteAsync(id);
+
+        if (!isDeleted)
+        {
+            return NotFound();
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+
 }

@@ -10,6 +10,7 @@
       <ProjectReference Include="..\AutoDetailingStudio.Common\AutoDetailingStudio.Common.csproj" />
       <ProjectReference Include="..\AutoDetailingStudio.Data.Models\AutoDetailingStudio.Data.Models.csproj" />
       <ProjectReference Include="..\AutoDetailingStudio.Data\AutoDetailingStudio.Data.csproj" />
+      <ProjectReference Include="..\AutoDetailingStudio.Services.Data\AutoDetailingStudio.Services.Data.csproj" />
       <ProjectReference Include="..\AutoDetailingStudio.ViewModels\AutoDetailingStudio.ViewModels.csproj" />
     </ItemGroup>
 

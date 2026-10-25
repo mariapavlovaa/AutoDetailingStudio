@@ -1,0 +1,54 @@
+
+.service-edit {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 45px;
+    background: #f8f6f2;
+    border-radius: 12px;
+}
+
+.service-edit h2 {
+    color: #24272b;
+    font-weight: 700;
+}
+
+.edit-divider {
+    width: 65px;
+    height: 2px;
+    background: #b99a63;
+    margin: 20px 0 30px;
+}
+
+.service-edit .form-label {
+    color: #24272b;
+    font-weight: 600;
+}
+
+.service-edit .form-control {
+    border: 1px solid #ded9d0;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.service-edit .form-control:focus {
+    border-color: #a78750;
+    box-shadow: 0 0 0 3px rgba(167, 135, 80, 0.15);
+}
+
+.service-edit .btn-save {
+    background: #a78750;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+}
+
+.service-edit .btn-save:hover {
+    background: #8d703f;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .service-edit {
+        padding: 25px 18px;
+    }
+}
