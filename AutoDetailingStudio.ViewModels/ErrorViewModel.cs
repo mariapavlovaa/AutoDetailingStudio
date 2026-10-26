@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Web.Models;
+namespace AutoDetailingStudio.ViewModels;
 
 public class ErrorViewModel
 {

@@ -34,6 +34,16 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Subscription" asp-action="Index">Subscriptions</a>
                     </li>
+                    @if (User.Identity?.IsAuthenticated == true && !User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-controller="Car"
+                               asp-action="Index">
+                                My Cars
+                            </a>
+                        </li>
+                    }
 
                     
                 </ul>

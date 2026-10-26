@@ -1,0 +1,75 @@
+@model AutoDetailingStudio.ViewModels.Car.CarDetailsViewModel
+
+@{
+    ViewData["Title"] = "Car Details";
+}
+
+<section class="container py-5">
+
+    <div class="mb-4">
+        <a asp-controller="Car"
+           asp-action="Index"
+           class="text-decoration-none text-dark">
+            ← Back to My Cars
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm mx-auto"
+         style="max-width: 700px;">
+
+        <div class="card-body p-5">
+
+            <span class="text-muted text-uppercase small">
+                Vehicle Information
+            </span>
+
+            <h1 class="fw-bold mt-2 mb-4">
+                @Model.Brand
+            </h1>
+
+            <hr />
+
+            <div class="row mt-4">
+
+                <div class="col-md-6 mb-3">
+                    <p class="text-muted mb-1">Registration Number</p>
+                    <h5>@Model.RegistrationNumber</h5>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <p class="text-muted mb-1">Vehicle Type</p>
+                    <h5>@Model.VehicleType</h5>
+                </div>
+
+            </div>
+
+            <div class="d-flex gap-3 mt-4">
+
+                <a asp-controller="Car"
+                   asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-dark">
+                    Edit Car
+                </a>
+
+                <form asp-controller="Car"
+                      asp-action="Delete"
+                      asp-route-id="@Model.Id"
+                      method="post"
+                      onsubmit="return confirm('Are you sure you want to delete this car?');">
+
+                    @Html.AntiForgeryToken()
+
+                    <button type="submit"
+                            class="btn btn-outline-danger">
+                        Delete Car
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>

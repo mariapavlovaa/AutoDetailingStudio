@@ -1,0 +1,23 @@
+.container.py-5 .card {
+    background: #f8f5ef;
+    border-radius: 16px;
+}
+
+.container.py-5 h1 {
+    color: #292929;
+    letter-spacing: -0.5px;
+}
+
+.container.py-5 hr {
+    border-color: #c9b89a;
+    opacity: 0.6;
+}
+
+.container.py-5 h5 {
+    font-weight: 600;
+}
+
+.container.py-5 .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+}

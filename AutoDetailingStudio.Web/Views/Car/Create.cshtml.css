@@ -1,0 +1,27 @@
+.container.py-5 .card {
+    background: #f8f5ef !important;
+    border-radius: 16px;
+}
+
+.container.py-5 h1 {
+    color: #292929;
+    letter-spacing: -0.5px;
+}
+
+.container.py-5 .form-control,
+.container.py-5 .form-select {
+    border: 1px solid #d8d0c3;
+    border-radius: 8px;
+    padding: 11px 14px;
+}
+
+.container.py-5 .form-control:focus,
+.container.py-5 .form-select:focus {
+    border-color: #b69b70;
+    box-shadow: 0 0 0 3px rgba(182, 155, 112, 0.15);
+}
+
+.container.py-5 .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+}

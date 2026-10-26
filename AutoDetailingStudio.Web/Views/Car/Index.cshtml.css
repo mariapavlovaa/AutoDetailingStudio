@@ -1,0 +1,24 @@
+.subscriptions-page, .container.py-5 {
+    color: #292929;
+}
+
+.container.py-5 h1 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.container.py-5 .card {
+    background: #f8f5ef;
+    border-radius: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.container.py-5 .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.container.py-5 .btn {
+    border-radius: 8px;
+    padding: 10px 18px;
+}

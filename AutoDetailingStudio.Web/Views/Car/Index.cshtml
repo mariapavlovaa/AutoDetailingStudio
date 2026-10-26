@@ -1,0 +1,81 @@
+@model IEnumerable<AutoDetailingStudio.ViewModels.Car.CarAllViewModel>
+
+@{
+    ViewData["Title"] = "My Cars";
+}
+
+<section class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">My Cars</h1>
+            <p class="text-muted">
+                Manage your vehicles and keep their information up to date.
+            </p>
+        </div>
+
+        <a asp-controller="Car"
+           asp-action="Create"
+           class="btn btn-dark">
+            + Add Car
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5 border rounded-3 bg-light">
+            <h4>No vehicles added yet</h4>
+            <p class="text-muted">
+                Add your first vehicle to start booking detailing services.
+            </p>
+
+            <a asp-controller="Car"
+               asp-action="Create"
+               class="btn btn-dark mt-2">
+                Add Your First Car
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var car in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
+
+                            <span class="text-uppercase text-muted small">
+                                My Vehicle
+                            </span>
+
+                            <h3 class="card-title mt-2">
+                                @car.Brand
+                            </h3>
+
+                            <hr />
+
+                            <p>
+                                <strong>Registration Number:</strong>
+                                @car.RegistrationNumber
+                            </p>
+
+                            <p>
+                                <strong>Vehicle Type:</strong>
+                                @car.VehicleType
+                            </p>
+
+                            <a asp-controller="Car"
+                               asp-action="Details"
+                               asp-route-id="@car.Id"
+                               class="btn btn-outline-dark w-100 mt-3">
+                                View Details
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>

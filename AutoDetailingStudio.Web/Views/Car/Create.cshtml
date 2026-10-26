@@ -1,0 +1,83 @@
+@using AutoDetailingStudio.Data.Models.Enums
+@model AutoDetailingStudio.ViewModels.Car.CarCreateViewModel
+
+@{
+    ViewData["Title"] = "Add Car";
+}
+
+<section class="container py-5">
+
+    <div class="card border-0 shadow-sm mx-auto"
+         style="max-width: 650px; background: #f8f5ef; border-radius: 16px;">
+
+        <div class="card-body p-4 p-md-5">
+
+            <h1 class="fw-bold mb-2">Add New Car</h1>
+
+            <p class="text-muted mb-4">
+                Enter your vehicle information.
+            </p>
+
+            <form asp-controller="Car" asp-action="Create" method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Brand" class="form-label">Brand</label>
+                    <input asp-for="Brand"
+                           class="form-control"
+                           placeholder="e.g. BMW" />
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RegistrationNumber" class="form-label">
+                        Registration Number
+                    </label>
+                    <input asp-for="RegistrationNumber"
+                           class="form-control"
+                           placeholder="e.g. CA1234AB" />
+                    <span asp-validation-for="RegistrationNumber"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="VehicleType" class="form-label">
+                        Vehicle Type
+                    </label>
+
+                    <select asp-for="VehicleType"
+                            asp-items="Html.GetEnumSelectList<VehicleType>()"
+                            class="form-select">
+                        <option value="">-- Select vehicle type --</option>
+                    </select>
+
+                    <span asp-validation-for="VehicleType"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-3 mt-4">
+                    <button type="submit" class="btn btn-dark px-4">
+                        Add Car
+                    </button>
+
+                    <a asp-controller="Car"
+                       asp-action="Index"
+                       class="btn btn-outline-secondary px-4">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

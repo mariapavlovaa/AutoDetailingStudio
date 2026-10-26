@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AutoDetailingStudio.Common\AutoDetailingStudio.Common.csproj" />
+      <ProjectReference Include="..\AutoDetailingStudio.Data.Models\AutoDetailingStudio.Data.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>

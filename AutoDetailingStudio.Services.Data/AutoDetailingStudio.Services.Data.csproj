@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AutoDetailingStudio.Data.Models\AutoDetailingStudio.Data.Models.csproj" />
+    </ItemGroup>
+
 </Project>
