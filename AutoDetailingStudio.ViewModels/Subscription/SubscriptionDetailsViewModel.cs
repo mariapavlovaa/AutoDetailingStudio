@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Web.Models.Subscription;
+namespace AutoDetailingStudio.ViewModels.Subscription;
 
 public class SubscriptionDetailsViewModel
 {

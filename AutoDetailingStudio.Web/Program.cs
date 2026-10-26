@@ -1,9 +1,11 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoDetailingStudio.Data;
 using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Services.Core;
 using AutoDetailingStudio.Services.Core.Contracts;
+using Microsoft.AspNetCore.Localization;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddScoped<IServiceService, ServiceService>();
-
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options =>
@@ -47,6 +49,14 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+var culture = CultureInfo.GetCultureInfo("en-US");
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(culture),
+    SupportedCultures = new[] { culture },
+    SupportedUICultures = new[] { culture }
+});
 
 app.MapControllerRoute(
     name: "default",

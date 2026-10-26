@@ -1,0 +1,35 @@
+.subscription-create-page {
+    background-color: #f8f6f2;
+    min-height: 80vh;
+    padding: 70px 0;
+}
+
+.subscription-create-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.subscription-create-card h1 {
+    color: #24272b;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.subscription-create-card .form-control:focus {
+    border-color: #a78750;
+    box-shadow: 0 0 0 0.2rem rgba(167, 135, 80, 0.15);
+}
+
+.subscription-create-card .btn-dark {
+    background-color: #24272b;
+    border-color: #24272b;
+}
+
+.subscription-create-card .btn-dark:hover {
+    background-color: #a78750;
+    border-color: #a78750;
+}

@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using AutoDetailingStudio.Common;
 using AutoDetailingStudio.Data;
+using AutoDetailingStudio.ViewModels.Service;
 using Microsoft.AspNetCore.Mvc;
 using AutoDetailingStudio.Web.Models;
-using AutoDetailingStudio.Web.Models.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Web.Controllers;

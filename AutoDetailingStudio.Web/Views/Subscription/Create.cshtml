@@ -1,0 +1,80 @@
+@model AutoDetailingStudio.ViewModels.Subscription.SubscriptionCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Subscription";
+}
+
+<section class="subscription-create-page">
+    <div class="container">
+        <div class="subscription-create-card">
+
+            <h1>Create Subscription</h1>
+            <p class="text-muted">
+                Add a new subscription plan to the catalog.
+            </p>
+
+            <form asp-controller="Subscription"
+                  asp-action="Create"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price"
+                           class="form-control"
+                           type="text"
+                           inputmode="decimal" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="DiscountPercent" class="form-label">
+                        Discount
+                    </label>
+                    <input asp-for="DiscountPercent"
+                           class="form-control"
+                           type="text"
+                           inputmode="decimal" />
+                    <div class="form-text">
+                        Enter 0.20 for a 20% discount.
+                    </div>
+                    <span asp-validation-for="DiscountPercent"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <button type="submit" class="btn btn-dark">
+                        Create Subscription
+                    </button>
+
+                    <a asp-controller="Subscription"
+                       asp-action="Index"
+                       class="btn btn-outline-secondary">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
