@@ -109,3 +109,10 @@
     color: #24272b;
     text-decoration: underline;
   }
+  /* Shared responsive form layout */
+
+  @media (max-width: 767px) {
+    .form-page {
+      padding: 25px 18px;
+    }
+  }

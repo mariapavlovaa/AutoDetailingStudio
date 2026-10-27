@@ -89,18 +89,5 @@
     font-weight: 700;
 }
 
-/* Mobile */
 
-@media (max-width: 767px) {
-    .service-details {
-        padding: 25px 18px;
-    }
 
-    .details-image {
-        height: 260px;
-    }
-
-    .details-info {
-        gap: 30px;
-    }
-}

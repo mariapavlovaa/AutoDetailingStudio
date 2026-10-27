@@ -156,13 +156,6 @@
     }
 }
 
-@media (max-width: 575px) {
-    .home-services-header {
-        align-items: center;
-    }
 
-    .home-service-card {
-        flex-basis: 100%;
-    }
-}
+
 

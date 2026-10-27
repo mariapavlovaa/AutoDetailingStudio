@@ -47,8 +47,4 @@
     color: white;
 }
 
-@media (max-width: 767px) {
-    .service-edit {
-        padding: 25px 18px;
-    }
-}
+
