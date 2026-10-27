@@ -66,7 +66,7 @@ Some additional features, such as customer subscription management, are planned 
 ### 1. Clone the repository
 
 ```bash
-git clone <https://github.com/USERNAME/AutoDetailingStudio.git>
+git clone <https://github.com/mariapavlovaa/AutoDetailingStudio.git>
 cd AutoDetailingStudio
 ```
 
