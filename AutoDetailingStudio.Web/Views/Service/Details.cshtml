@@ -55,6 +55,16 @@
                     </div>
                 </div>
                 
+                @if (User.Identity?.IsAuthenticated == true && !User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Appointment"
+                       asp-action="Create"
+                       asp-route-serviceId="@Model.Id"
+                       class="btn btn-dark">
+                        Book Now
+                    </a>
+                }
+                
                 @if (User.IsInRole("Admin"))
                 {
                     <div class="d-flex gap-3 mt-4">

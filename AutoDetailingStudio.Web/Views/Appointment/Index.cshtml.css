@@ -1,0 +1,59 @@
+h2 {
+    font-weight: 700;
+    color: #222;
+}
+
+.appointments-card,
+.empty-state {
+    background: white;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.empty-state {
+    padding: 50px 20px;
+}
+
+th {
+    background: #f8f9fa;
+    font-size: 13px;
+    color: #666;
+}
+
+td, th {
+    padding: 16px;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.confirmed {
+    background: #d1e7dd;
+    color: #146c43;
+}
+
+.inprogress {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.completed {
+    background: #e2e3e5;
+    color: #41464b;
+}
+
+.cancelled {
+    background: #f8d7da;
+    color: #842029;
+}

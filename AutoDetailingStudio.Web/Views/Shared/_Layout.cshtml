@@ -33,18 +33,37 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" asp-area="" asp-controller="Subscription" asp-action="Index">Subscriptions</a>
-                    </li>
                     @if (User.Identity?.IsAuthenticated == true && !User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
                             <a class="nav-link text-light"
+                               asp-area=""
                                asp-controller="Car"
                                asp-action="Index">
                                 My Cars
                             </a>
                         </li>
-                    }
 
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area=""
+                               asp-controller="Appointment"
+                               asp-action="Index">
+                                My Appointments
+                            </a>
+                        </li>
+                    }
+                    @if (User.Identity?.IsAuthenticated == true && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light"
+                               asp-area=""
+                               asp-controller="AdminAppointment"
+                               asp-action="Index">
+                                Manage Appointments
+                            </a>
+                        </li>
+                    }
                     
                 </ul>
                 <partial name="_LoginPartial"/>

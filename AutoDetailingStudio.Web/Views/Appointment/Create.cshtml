@@ -1,0 +1,115 @@
+@model AutoDetailingStudio.ViewModels.Appointment.AppointmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<section class="appointment-create-section">
+    <div class="container">
+        <div class="appointment-create-container">
+
+            <div class="page-heading">
+                <h1>Book an Appointment</h1>
+                <p>Choose your vehicle and preferred date to request a booking.</p>
+            </div>
+
+            <div class="appointment-card">
+                <form asp-controller="Appointment"
+                      asp-action="Create"
+                      method="post">
+
+                    <input asp-for="ServiceId" type="hidden" />
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3"></div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Selected Service</label>
+                        <input type="text"
+                               class="form-control"
+                               value="@Model.ServiceName"
+                               readonly />
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="CarId" class="form-label">
+                            Your Vehicle
+                        </label>
+
+                        <select asp-for="CarId"
+                                asp-items="Model.Cars"
+                                class="form-select">
+                            <option value="">Select a vehicle</option>
+                        </select>
+
+                        <span asp-validation-for="CarId"
+                              class="text-danger"></span>
+
+                        @if (!Model.Cars.Any())
+                        {
+                            <p class="mt-2">
+                                You haven't added a vehicle yet.
+                                <a asp-controller="Car"
+                                   asp-action="Create">
+                                    Add a vehicle
+                                </a>
+                            </p>
+                        }
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="StartTime" class="form-label">
+                            Preferred Date & Time
+                        </label>
+
+                        <input asp-for="StartTime"
+                               type="datetime-local"
+                               asp-format="{0:yyyy-MM-ddTHH:mm}"
+                               class="form-control" />
+
+                        <span asp-validation-for="StartTime"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Notes" class="form-label">
+                            Additional Notes
+                        </label>
+
+                        <textarea asp-for="Notes"
+                                  class="form-control"
+                                  rows="4"
+                                  placeholder="Any special requests or additional information..."></textarea>
+
+                        <span asp-validation-for="Notes"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <a asp-controller="Service"
+                           asp-action="Details"
+                           asp-route-id="@Model.ServiceId"
+                           class="btn btn-outline-secondary">
+                            Back
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-dark"
+                                disabled="@(!Model.Cars.Any())">
+                            Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <p class="booking-notice">
+                Your appointment will be pending until confirmed by our team.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

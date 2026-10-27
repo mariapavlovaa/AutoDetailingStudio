@@ -1,0 +1,125 @@
+@using AutoDetailingStudio.Data.Models.Enums
+@model IEnumerable<AutoDetailingStudio.ViewModels.Appointment.AppointmentGetAllViewModel>
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+
+    ViewData["Title"] = isAdmin
+        ? "All Appointments"
+        : "My Appointments";
+}
+
+<div class="container py-5">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+
+    <p class="text-muted mb-4">
+        @if (isAdmin)
+        {
+            <text>View and manage all customer appointments.</text>
+        }
+        else
+        {
+            <text>Manage your detailing appointments.</text>
+        }
+    </p>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state text-center">
+            <h5>No appointments yet</h5>
+
+            <p class="text-muted mb-0">
+                @if (isAdmin)
+                {
+                    <text>There are no customer appointments yet.</text>
+                }
+                else
+                {
+                    <text>You haven't booked any services yet.</text>
+                }
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="appointments-card table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Car</th>
+                        <th>Service</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var appointment in Model)
+                    {
+                        <tr>
+                            <td>
+                                @appointment.CarBrand
+
+                                <small class="d-block text-muted">
+                                    @appointment.RegistrationNumber
+                                </small>
+                            </td>
+
+                            <td>
+                                @appointment.ServiceName
+                            </td>
+
+                            <td>
+                                @appointment.StartTime.ToString("dd.MM.yyyy HH:mm")
+                            </td>
+
+                            <td>
+                                <span class="status @appointment.Status.ToString().ToLowerInvariant()">
+                                    @appointment.Status
+                                </span>
+                            </td>
+
+                            <td class="text-end">
+                                @if (isAdmin)
+                                {
+                                    <a asp-controller="AdminAppointment"
+                                       asp-action="Details"
+                                       asp-route-id="@appointment.Id"
+                                       class="btn btn-outline-dark btn-sm">
+                                        Details
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Appointment"
+                                       asp-action="Details"
+                                       asp-route-id="@appointment.Id"
+                                       class="btn btn-outline-dark btn-sm">
+                                        Details
+                                    </a>
+
+                                    @if (appointment.Status == AppointmentStatus.Pending)
+                                    {
+                                        <form asp-controller="Appointment"
+                                              asp-action="Cancel"
+                                              asp-route-id="@appointment.Id"
+                                              method="post"
+                                              class="d-inline">
+
+                                            <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    onclick="return confirm('Are you sure you want to cancel this appointment?');">
+                                                Cancel
+                                            </button>
+                                        </form>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

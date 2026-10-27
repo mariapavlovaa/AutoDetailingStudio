@@ -1,0 +1,130 @@
+@using AutoDetailingStudio.Data.Models.Enums
+@model AutoDetailingStudio.ViewModels.Appointment.AppointmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Appointment Details";
+}
+
+<div class="container py-5">
+    <div class="details-container">
+        <h2 class="mb-2">Appointment Details</h2>
+        <p class="text-muted mb-4">Your booking information.</p>
+
+        <div class="details-card">
+            <h5 class="mb-4">@Model.ServiceName</h5>
+
+            <div class="detail-row">
+                <span>Registration Number</span>
+                <strong>@Model.RegistrationNumber</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Service</span>
+                <strong>@Model.ServiceName</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Description</span>
+                <span>@Model.ServiceDescription</span>
+            </div>
+
+            <div class="detail-row">
+                <span>Date & Time</span>
+                <strong>@Model.StartTime.ToString("dd.MM.yyyy HH:mm")</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Status</span>
+                <strong>@Model.Status</strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Notes</span>
+                <span>
+                    @(string.IsNullOrWhiteSpace(Model.Notes)
+                        ? "No notes"
+                        : Model.Notes)
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <span>Created At</span>
+                <span>@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</span>
+            </div>
+        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-4">
+                <h5>Manage Appointment</h5>
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["Error"]
+                    </div>
+                }
+
+                @if (Model.Status != AppointmentStatus.Completed &&
+                     Model.Status != AppointmentStatus.Cancelled)
+                {
+                    <form asp-controller="AdminAppointment"
+                          asp-action="ChangeStatus"
+                          asp-route-id="@ViewBag.AppointmentId"
+                          method="post">
+
+                        <label class="form-label">Change Status</label>
+
+                        <select name="status" class="form-select mb-3">
+                            @if (Model.Status == AppointmentStatus.Pending)
+                            {
+                                <option value="@AppointmentStatus.Confirmed">Confirmed</option>
+                                <option value="@AppointmentStatus.Cancelled">Cancelled</option>
+                            }
+                            else if (Model.Status == AppointmentStatus.Confirmed)
+                            {
+                                <option value="@AppointmentStatus.InProgress">In Progress</option>
+                                <option value="@AppointmentStatus.Cancelled">Cancelled</option>
+                            }
+                            else if (Model.Status == AppointmentStatus.InProgress)
+                            {
+                                <option value="@AppointmentStatus.Completed">Completed</option>
+                            }
+                        </select>
+
+                        <button type="submit" class="btn btn-dark">
+                            Update Status
+                        </button>
+                    </form>
+                }
+                @if (User.IsInRole("Admin") &&
+                     (Model.Status == AppointmentStatus.Cancelled ||
+                      Model.Status == AppointmentStatus.Completed))
+                {
+                    <form asp-controller="AdminAppointment"
+                          asp-action="Delete"
+                          asp-route-id="@ViewBag.AppointmentId"
+                          method="post"
+                          class="mt-4">
+
+                        <button type="submit"
+                                class="btn btn-outline-danger"
+                                onclick="return confirm('Are you sure you want to permanently delete this appointment? This action cannot be undone.');">
+                            Delete Permanently
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <p class="text-muted">
+                        This appointment is closed.
+                    </p>
+                }
+            </div>
+        }
+
+        <a asp-action="Index"
+           class="btn btn-outline-dark mt-4">
+            Back to Appointments
+        </a>
+    </div>
+</div>
