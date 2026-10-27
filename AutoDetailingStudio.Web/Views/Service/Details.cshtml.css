@@ -7,20 +7,6 @@
     min-height: 550px;
 }
 
-/* Back link */
-
-.back-link {
-    display: inline-block;
-    color: #a78750;
-    font-weight: 600;
-    text-decoration: none;
-    margin-bottom: 35px;
-}
-
-.back-link:hover {
-    color: #24272b;
-    text-decoration: none;
-}
 
 /* Image */
 

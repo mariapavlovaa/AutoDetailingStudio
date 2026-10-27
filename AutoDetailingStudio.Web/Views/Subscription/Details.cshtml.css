@@ -1,26 +1,4 @@
 
-.subscription-details {
-    background-color: #f8f6f2;
-    padding: 45px;
-    margin: 30px 0;
-    border-radius: 12px;
-    min-height: 550px;
-}
-
-/* Back link */
-
-.back-link {
-    display: inline-block;
-    color: #a78750;
-    font-weight: 600;
-    text-decoration: none;
-    margin-bottom: 45px;
-}
-
-.back-link:hover {
-    color: #24272b;
-}
-
 /* Header */
 
 .details-header {
