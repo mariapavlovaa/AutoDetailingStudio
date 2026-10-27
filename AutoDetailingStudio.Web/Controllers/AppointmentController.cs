@@ -1,14 +1,17 @@
 using System.Security.Claims;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Appointment.Request;
+using AutoDetailingStudio.Services.Data.Appointment.Responce;
 using AutoDetailingStudio.Services.Data.Car.Responce;
 using AutoDetailingStudio.Services.Data.Service.Responce;
 using AutoDetailingStudio.ViewModels.Appointment;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AutoDetailingStudio.Web.Controllers;
-
+using static AutoDetailingStudio.Common.ErrorMessages.Appointment;
+[Authorize]
 public class AppointmentController : Controller
 {
     private readonly IAppointmentService _appointmentService;
@@ -39,7 +42,8 @@ public class AppointmentController : Controller
             return Challenge();
         }
 
-       var appointmentsDto = await _appointmentService.GetAllAsync(userId);
+       IEnumerable<AppointmentGetAllDto> appointmentsDto =
+           await _appointmentService.GetAllAsync(userId);
 
         IEnumerable<AppointmentGetAllViewModel> appointments = appointmentsDto
             .Select(a => new AppointmentGetAllViewModel
@@ -107,7 +111,7 @@ public class AppointmentController : Controller
             return Challenge();
         }
 
-        ServiceDetailsDto service = await _serviceService.GetByIdAsync(serviceId);
+        ServiceDetailsDto? service = await _serviceService.GetByIdAsync(serviceId);
 
         if (service == null)
         {
@@ -167,7 +171,7 @@ public class AppointmentController : Controller
 
             ModelState.AddModelError(
                 string.Empty,
-                "Unable to create appointment.");
+                CreateFailed);
         }
         
         
@@ -179,7 +183,7 @@ public class AppointmentController : Controller
             return NotFound();
         }
 
-        var cars = await _carService.GetAllAsync(userId);
+        IEnumerable<CarGetAllDto> cars = await _carService.GetAllAsync(userId);
 
         model.ServiceName = service.Name;
 

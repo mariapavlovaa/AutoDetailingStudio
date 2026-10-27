@@ -4,26 +4,30 @@ using AutoDetailingStudio.Common;
 
 namespace AutoDetailingStudio.ViewModels.Subscription;
 using static EntityValidation.Subscription;
+using static AutoDetailingStudio.Common.ErrorMessages.Subscription;
 public class SubscriptionCreateViewModel
 {
-    [Required]
+    [Required(ErrorMessage = NameRequired)]
     [StringLength(SubscriptionNameMaxLength,
-        MinimumLength = SubscriptionNameMinLength)]
+        MinimumLength = SubscriptionNameMinLength,
+        ErrorMessage = NameLength)]
     public string Name { get; set; } = null!;
 
-    [Required]
-    [StringLength(SubscriptionDescriptionMaxLength)]
-    public string Description { get; set; } = null!;
+    [StringLength(SubscriptionDescriptionMaxLength,
+        ErrorMessage = DescriptionLength)]
+    public string? Description { get; set; }
 
     [Range(typeof(decimal),
         SubscriptionPriceMinValue,
         SubscriptionPriceMaxValue,
-        ParseLimitsInInvariantCulture = true)]
+        ParseLimitsInInvariantCulture = true,
+        ErrorMessage = PriceRange)]
     public decimal Price { get; set; }
 
     [Range(typeof(decimal),
         SubscriptionDiscountPercentMinValue,
         SubscriptionDiscountPercentMaxValue,
-        ParseLimitsInInvariantCulture = true)]
+        ParseLimitsInInvariantCulture = true,
+        ErrorMessage = DiscountRange)]
     public decimal DiscountPercent { get; set; }
 }

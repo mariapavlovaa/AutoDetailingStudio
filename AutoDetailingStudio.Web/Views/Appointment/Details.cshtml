@@ -96,9 +96,8 @@
                         </button>
                     </form>
                 }
-                @if (User.IsInRole("Admin") &&
-                     (Model.Status == AppointmentStatus.Cancelled ||
-                      Model.Status == AppointmentStatus.Completed))
+                @if (Model.Status == AppointmentStatus.Cancelled ||
+                     Model.Status == AppointmentStatus.Completed)
                 {
                     <form asp-controller="AdminAppointment"
                           asp-action="Delete"
@@ -113,16 +112,11 @@
                         </button>
                     </form>
                 }
-                else
-                {
-                    <p class="text-muted">
-                        This appointment is closed.
-                    </p>
-                }
+                
             </div>
         }
-
-        <a asp-action="Index"
+        <a asp-controller="@(User.IsInRole("Admin") ? "AdminAppointment" : "Appointment")"
+           asp-action="Index"
            class="btn btn-outline-dark mt-4">
             Back to Appointments
         </a>

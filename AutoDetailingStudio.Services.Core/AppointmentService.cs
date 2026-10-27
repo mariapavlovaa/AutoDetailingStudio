@@ -154,11 +154,7 @@ public class AppointmentService:IAppointmentService
         return appointments;
     }
 
-    // public Task<IEnumerable<AppointmentGetAllDto>> GetPendingAsync()
-    // {
-    //     throw new NotImplementedException();
-    // }
-
+  
     public async Task<AppointmentDetailsDto?> GetByIdForAdminAsync(int id)
     {
         return await _context.Appointments
@@ -174,7 +170,6 @@ public class AppointmentService:IAppointmentService
                 Notes = a.Notes,
                 CreatedAt = a.CreatedAt
             })
-            .Take(EntitiesPerPage)
             .FirstOrDefaultAsync();
     }
 

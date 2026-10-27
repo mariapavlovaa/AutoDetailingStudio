@@ -1,25 +1,34 @@
 using System.ComponentModel.DataAnnotations;
 namespace AutoDetailingStudio.ViewModels.Service;
 using static AutoDetailingStudio.Common.EntityValidation.Service;
+using static AutoDetailingStudio.Common.ErrorMessages.Service;
 public class ServiceCreateViewModel
 {
-    [Required]
-    [StringLength(ServiceNameMaxLength, MinimumLength = ServiceNameMinlength)]
+    [Required(ErrorMessage = NameRequired)]
+    [StringLength(ServiceNameMaxLength,
+        MinimumLength = ServiceNameMinlength,
+        ErrorMessage = NameLength)]
     public string Name { get; set; } = null!;
 
-    
-    [Required]
-    [StringLength(ServiceDescriptionMaxLength, MinimumLength = ServiceDescriptionMinLength)]
+    [Required(ErrorMessage = DescriptionRequired)]
+    [StringLength(ServiceDescriptionMaxLength,
+        MinimumLength = ServiceDescriptionMinLength,
+        ErrorMessage = DescriptionLength)]
     public string Description { get; set; } = null!;
 
-    
-    [Range(typeof(decimal), ServicePriceMinValue, ServicePriceMaxValue, ParseLimitsInInvariantCulture = true)]
+    [Range(typeof(decimal),
+        ServicePriceMinValue,
+        ServicePriceMaxValue,
+        ParseLimitsInInvariantCulture = true,
+        ErrorMessage = PriceRange)]
     public decimal Price { get; set; }
 
-    [Range(DurationMinutesMinValue, DurationMinutesMaxValue)]
+    [Range(DurationMinutesMinValue,
+        DurationMinutesMaxValue,
+        ErrorMessage = DurationRange)]
     public int DurationMinutes { get; set; }
 
-    
-    [StringLength(ImageUrlMaxLength)]
+    [StringLength(ImageUrlMaxLength,
+        ErrorMessage = ImageUrlLength)]
     public string? ImageUrl { get; set; }
 }
