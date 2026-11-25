@@ -1,6 +1,6 @@
 using AutoDetailingStudio.Data.Models.Enums;
 
-namespace AutoDetailingStudio.Services.Data.Car.Responce;
+namespace AutoDetailingStudio.Services.Data.Car.Response;
 
 public class CarGetAllDto
 {

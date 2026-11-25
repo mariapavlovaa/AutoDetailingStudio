@@ -1,7 +1,6 @@
-
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Subscription.Request;
-using AutoDetailingStudio.Services.Data.Subscription.Responce;
+using AutoDetailingStudio.Services.Data.Subscription.Response;
 using AutoDetailingStudio.ViewModels.Subscription;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -22,7 +22,7 @@
 
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control"/>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
@@ -39,7 +39,7 @@
                     <input asp-for="Price"
                            class="form-control"
                            type="text"
-                           inputmode="decimal" />
+                           inputmode="decimal"/>
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
@@ -50,9 +50,10 @@
                     <input asp-for="DiscountPercent"
                            class="form-control"
                            type="text"
-                           inputmode="decimal" />
+                           inputmode="decimal"/>
                     <div class="form-text">
-                        Enter 0.20 for a 20% discount.
+                        Enter a value between 0.01 and 0.99.
+                        For example, 0.05 represents a 5% discount.
                     </div>
                     <span asp-validation-for="DiscountPercent"
                           class="text-danger"></span>
@@ -76,5 +77,5 @@
 </section>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
 }

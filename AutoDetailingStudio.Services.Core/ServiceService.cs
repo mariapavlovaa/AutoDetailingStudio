@@ -1,20 +1,23 @@
-
 using AutoDetailingStudio.Data;
 using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Service.Request;
-using AutoDetailingStudio.Services.Data.Service.Responce;
+using AutoDetailingStudio.Services.Data.Service.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Services.Core;
+
 using static AutoDetailingStudio.Common.ApplicationConstants;
-public class ServiceService:IServiceService
+
+public class ServiceService : IServiceService
 {
     private readonly ApplicationDbContext _context;
+
     public ServiceService(ApplicationDbContext context)
     {
         _context = context;
     }
+
     public async Task<IEnumerable<ServiceGetAllDto>> GetAllAsync()
     {
         IEnumerable<ServiceGetAllDto> allServices = await _context.Services
@@ -32,12 +35,12 @@ public class ServiceService:IServiceService
             })
             .Take(EntitiesPerPage)
             .ToListAsync();
-        return  allServices;
+        return allServices;
     }
 
     public async Task<ServiceDetailsDto?> GetByIdAsync(int id)
     {
-        ServiceDetailsDto ?service = await _context.Services
+        ServiceDetailsDto? service = await _context.Services
             .AsNoTracking()
             .Where(s => s.Id == id && s.IsActive)
             .Select(s => new ServiceDetailsDto()
@@ -55,7 +58,7 @@ public class ServiceService:IServiceService
 
     public async Task CreateAsync(ServiceCreateDto model)
     {
-       Service service = new Service
+        Service service = new Service
         {
             Name = model.Name,
             Description = model.Description,
@@ -68,11 +71,11 @@ public class ServiceService:IServiceService
         await _context.Services.AddAsync(service);
         await _context.SaveChangesAsync();
     }
-    
-    
+
+
     public async Task<bool> EditAsync(ServiceEditDto model)
     {
-        Service ?service = await _context.Services
+        Service? service = await _context.Services
             .FirstOrDefaultAsync(s => s.Id == model.Id && s.IsActive);
 
         if (service == null)
@@ -90,7 +93,7 @@ public class ServiceService:IServiceService
 
         return true;
     }
-    
+
     public async Task<bool> DeleteAsync(int id)
     {
         Service? service = await _context.Services
@@ -107,6 +110,4 @@ public class ServiceService:IServiceService
 
         return true;
     }
-
-    
 }

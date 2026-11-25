@@ -25,7 +25,7 @@
 
                 @Html.AntiForgeryToken()
 
-                <input asp-for="Id" type="hidden" />
+                <input asp-for="Id" type="hidden"/>
 
                 <div asp-validation-summary="ModelOnly"
                      class="text-danger mb-3"></div>
@@ -33,7 +33,7 @@
                 <div class="mb-3">
                     <label asp-for="Brand" class="form-label">Brand</label>
                     <input asp-for="Brand"
-                           class="form-control" />
+                           class="form-control"/>
                     <span asp-validation-for="Brand"
                           class="text-danger"></span>
                 </div>
@@ -43,7 +43,7 @@
                         Registration Number
                     </label>
                     <input asp-for="RegistrationNumber"
-                           class="form-control" />
+                           class="form-control"/>
                     <span asp-validation-for="RegistrationNumber"
                           class="text-danger"></span>
                 </div>
@@ -84,5 +84,5 @@
 </section>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
 }

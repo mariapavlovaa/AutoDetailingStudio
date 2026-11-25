@@ -1,5 +1,5 @@
 using AutoDetailingStudio.Services.Data.Subscription.Request;
-using AutoDetailingStudio.Services.Data.Subscription.Responce;
+using AutoDetailingStudio.Services.Data.Subscription.Response;
 
 namespace AutoDetailingStudio.Services.Core.Contracts;
 
@@ -16,6 +16,4 @@ public interface ISubscriptionService
     Task<bool> EditAsync(SubscriptionEditDto model);
 
     Task<bool> DeleteAsync(int id);
-    
-    
 }

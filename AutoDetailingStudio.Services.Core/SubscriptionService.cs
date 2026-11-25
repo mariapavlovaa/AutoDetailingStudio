@@ -1,10 +1,9 @@
-
 using AutoDetailingStudio.Common;
 using AutoDetailingStudio.Data;
 using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Subscription.Request;
-using AutoDetailingStudio.Services.Data.Subscription.Responce;
+using AutoDetailingStudio.Services.Data.Subscription.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Services.Core;
@@ -18,7 +17,7 @@ public class SubscriptionService : ISubscriptionService
         _context = context;
     }
 
-   
+
     public async Task<IEnumerable<SubscriptionGetAllDto>> GetAllAsync(
         bool includeInactive = false)
     {
@@ -38,7 +37,7 @@ public class SubscriptionService : ISubscriptionService
             .Take(ApplicationConstants.EntitiesPerPage)
             .ToListAsync();
     }
-    
+
 
     public async Task<SubscriptionDetailsDto?> GetByIdAsync(
         int id, bool includeInactive = false)
@@ -113,4 +112,3 @@ public class SubscriptionService : ISubscriptionService
         return true;
     }
 }
-    

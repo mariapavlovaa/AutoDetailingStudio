@@ -2,36 +2,36 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Data.Models;
+
 using static Common.EntityValidation.Service;
+
 public class Service
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
 
-    [Required] 
-    [MaxLength(ServiceNameMaxLength)]  
+    [Required]
+    [MaxLength(ServiceNameMaxLength)]
     [MinLength(ServiceNameMinlength)]
     public string Name { get; set; } = null!;
 
-    [Required] 
+    [Required]
     [MaxLength(ServiceDescriptionMaxLength)]
     [MinLength(ServiceDescriptionMinLength)]
-    
-     public string Description { get; set; } = null!;
-     
-    [MaxLength(ImageUrlMaxLength)]
-    public string? ImageUrl { get; set; }
-    
-   
+
+    public string Description { get; set; } = null!;
+
+    [MaxLength(ImageUrlMaxLength)] public string? ImageUrl { get; set; }
+
+
     [Range(typeof(decimal), ServicePriceMinValue, ServicePriceMaxValue)]
     [Precision(ServicePricePrecision, ServicePriceScale)]
     public decimal Price { get; set; }
+
     [Range(DurationMinutesMinValue, DurationMinutesMaxValue)]
     public int DurationMinutes { get; set; }
 
-    public bool IsActive { get; set; }=true;
+    public bool IsActive { get; set; } = true;
 
     public virtual ICollection<Appointment> Appointments { get; set; }
         = new HashSet<Appointment>();
-    
 }

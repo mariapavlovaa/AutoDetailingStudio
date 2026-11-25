@@ -11,17 +11,17 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.31"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.31"/>
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.31" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.31"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.31">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AutoDetailingStudio.Data\AutoDetailingStudio.Data.csproj" />
-      <ProjectReference Include="..\AutoDetailingStudio.Services.Core\AutoDetailingStudio.Services.Core.csproj" />
-      <ProjectReference Include="..\AutoDetailingStudio.ViewModels\AutoDetailingStudio.ViewModels.csproj" />
+        <ProjectReference Include="..\AutoDetailingStudio.Data\AutoDetailingStudio.Data.csproj"/>
+        <ProjectReference Include="..\AutoDetailingStudio.Services.Core\AutoDetailingStudio.Services.Core.csproj"/>
+        <ProjectReference Include="..\AutoDetailingStudio.ViewModels\AutoDetailingStudio.ViewModels.csproj"/>
     </ItemGroup>
 
 </Project>

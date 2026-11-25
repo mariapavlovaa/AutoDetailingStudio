@@ -8,5 +8,5 @@ public class AppointmentCreateDto
 
     public DateTime StartTime { get; set; }
 
-    public string? Notes { get; set; } 
+    public string? Notes { get; set; }
 }

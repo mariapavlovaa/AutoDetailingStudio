@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Services.Data.Service.Responce;
+namespace AutoDetailingStudio.Services.Data.Service.Response;
 
 public class ServiceDetailsDto
 {

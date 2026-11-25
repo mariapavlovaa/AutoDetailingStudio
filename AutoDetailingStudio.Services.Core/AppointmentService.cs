@@ -3,12 +3,14 @@ using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Data.Models.Enums;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Appointment.Request;
-using AutoDetailingStudio.Services.Data.Appointment.Responce;
+using AutoDetailingStudio.Services.Data.Appointment.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Services.Core;
+
 using static AutoDetailingStudio.Common.ApplicationConstants;
-public class AppointmentService:IAppointmentService
+
+public class AppointmentService : IAppointmentService
 {
     private readonly ApplicationDbContext _context;
 
@@ -16,11 +18,11 @@ public class AppointmentService:IAppointmentService
     {
         _context = context;
     }
-    
-    //за потребители
+
+    // Customer operations
     public async Task<IEnumerable<AppointmentGetAllDto>> GetAllAsync(string userId)
     {
-        IEnumerable<AppointmentGetAllDto> appointments= await _context.Appointments
+        IEnumerable<AppointmentGetAllDto> appointments = await _context.Appointments
             .AsNoTracking()
             .Where(a => a.UserId == userId)
             .OrderByDescending(a => a.StartTime)
@@ -37,12 +39,11 @@ public class AppointmentService:IAppointmentService
             .ToListAsync();
 
         return appointments;
-
     }
 
     public async Task<AppointmentDetailsDto?> GetByIdAsync(int id, string userId)
     {
-       AppointmentDetailsDto ?appointment= await _context.Appointments
+        AppointmentDetailsDto? appointment = await _context.Appointments
             .AsNoTracking()
             .Where(a => a.Id == id && a.UserId == userId)
             .Select(a => new AppointmentDetailsDto
@@ -56,12 +57,9 @@ public class AppointmentService:IAppointmentService
                 CreatedAt = a.CreatedAt
             })
             .FirstOrDefaultAsync();
-       return appointment;
-
+        return appointment;
     }
 
-    
-    
 
     public async Task<bool> CreateAsync(AppointmentCreateDto model, string userId)
     {
@@ -103,12 +101,7 @@ public class AppointmentService:IAppointmentService
         return true;
     }
 
-    // public Task<bool> EditAsync(AppointmentEditDto model, string userId)
-    // {
-    //     throw new NotImplementedException();
-    // }
 
-    
     public async Task<bool> CancelAsync(int id, string userId)
     {
         Appointment? appointment = await _context.Appointments
@@ -130,10 +123,10 @@ public class AppointmentService:IAppointmentService
 
         return true;
     }
-    
-    
-    //за администратори 
-    
+
+
+    // Administrator operations
+
     public async Task<IEnumerable<AppointmentGetAllDto>> GetAllForAdminAsync()
     {
         IEnumerable<AppointmentGetAllDto> appointments = await _context.Appointments
@@ -154,7 +147,7 @@ public class AppointmentService:IAppointmentService
         return appointments;
     }
 
-  
+
     public async Task<AppointmentDetailsDto?> GetByIdForAdminAsync(int id)
     {
         return await _context.Appointments
@@ -221,7 +214,7 @@ public class AppointmentService:IAppointmentService
 
         return true;
     }
-    
+
     public async Task<bool> DeleteAsync(int id)
     {
         Appointment? appointment = await _context.Appointments

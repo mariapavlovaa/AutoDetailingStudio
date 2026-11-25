@@ -4,7 +4,6 @@ namespace AutoDetailingStudio.Services.Data.Car.Request;
 
 public class CarCreateDto
 {
-    
     public string Brand { get; set; } = null!;
 
     public string RegistrationNumber { get; set; } = null!;

@@ -1,6 +1,6 @@
 using AutoDetailingStudio.Data.Models.Enums;
 
-namespace AutoDetailingStudio.Services.Data.Appointment.Responce;
+namespace AutoDetailingStudio.Services.Data.Appointment.Response;
 
 public class AppointmentGetAllDto
 {

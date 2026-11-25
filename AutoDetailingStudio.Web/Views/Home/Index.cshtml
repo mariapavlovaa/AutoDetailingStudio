@@ -17,24 +17,23 @@
                         to keep your vehicle looking its best.
                     </p>
 
-                    
-                  
-                        <div class="d-flex flex-wrap gap-3">
-                            <a asp-controller="Service"
-                               asp-action="Index"
-                               class="btn btn-warning btn-lg">
-                                Explore Services
-                            </a>
 
-                            <a asp-controller="Service"
-                               asp-action="Index"
-                               class="btn btn-outline-light btn-lg">
-                                Book an Appointment
-                            </a>
-                        </div>
-                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <a asp-controller="Service"
+                           asp-action="Index"
+                           class="btn btn-warning btn-lg">
+                            Explore Services
+                        </a>
+
+                        <a asp-controller="Service"
+                           asp-action="Index"
+                           class="btn btn-outline-light btn-lg">
+                            Book an Appointment
+                        </a>
+                    </div>
+
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -74,7 +73,7 @@
             {
                 <article class="home-service-card">
                     <img src="@(service.ImageUrl ?? "/images/placeholder.jpg")"
-                         alt="@service.Name" />
+                         alt="@service.Name"/>
 
                     <div class="home-service-content">
                         <h3>@service.Name</h3>

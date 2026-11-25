@@ -1,10 +1,10 @@
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Service.Request;
-using AutoDetailingStudio.Services.Data.Service.Responce;
+using AutoDetailingStudio.Services.Data.Service.Response;
 using AutoDetailingStudio.ViewModels.Service;
-using AutoDetailingStudio.Web.Models.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 namespace AutoDetailingStudio.Web.Controllers;
 
 public class ServiceController : Controller
@@ -15,6 +15,7 @@ public class ServiceController : Controller
     {
         _service = service;
     }
+
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -26,15 +27,13 @@ public class ServiceController : Controller
             Name = s.Name,
             Price = s.Price
         });
-        
-        return View(models);
 
+        return View(models);
     }
 
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-
         ServiceDetailsDto? service = await _service.GetByIdAsync(id);
 
         if (service is null)
@@ -54,14 +53,14 @@ public class ServiceController : Controller
 
         return View(model);
     }
-    
+
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public IActionResult Create()
     {
         return View(new ServiceCreateViewModel());
     }
-    
+
     [HttpPost]
     [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
@@ -85,7 +84,7 @@ public class ServiceController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
+
 
     [HttpGet]
     [Authorize(Roles = "Admin")]
@@ -110,8 +109,8 @@ public class ServiceController : Controller
 
         return View(model);
     }
-    
-    
+
+
     [HttpPost]
     [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
@@ -146,7 +145,7 @@ public class ServiceController : Controller
 
         return RedirectToAction(nameof(Details), new { id = model.Id });
     }
-    
+
     [HttpPost]
     [Authorize(Roles = "Admin")]
     [ValidateAntiForgeryToken]
@@ -161,6 +160,4 @@ public class ServiceController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-
-
 }

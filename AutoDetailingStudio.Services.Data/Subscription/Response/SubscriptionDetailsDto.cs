@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Services.Data.Subscription.Responce;
+namespace AutoDetailingStudio.Services.Data.Subscription.Response;
 
 public class SubscriptionDetailsDto
 {

@@ -8,12 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AutoDetailingStudio.Common\AutoDetailingStudio.Common.csproj" />
+        <ProjectReference Include="..\AutoDetailingStudio.Common\AutoDetailingStudio.Common.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.32" />
-      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.31" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.32"/>
+        <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.31"/>
     </ItemGroup>
 
 </Project>

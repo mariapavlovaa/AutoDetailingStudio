@@ -1,16 +1,18 @@
 using System.Security.Claims;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Appointment.Request;
-using AutoDetailingStudio.Services.Data.Appointment.Responce;
-using AutoDetailingStudio.Services.Data.Car.Responce;
-using AutoDetailingStudio.Services.Data.Service.Responce;
+using AutoDetailingStudio.Services.Data.Appointment.Response;
+using AutoDetailingStudio.Services.Data.Car.Response;
+using AutoDetailingStudio.Services.Data.Service.Response;
 using AutoDetailingStudio.ViewModels.Appointment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AutoDetailingStudio.Web.Controllers;
+
 using static AutoDetailingStudio.Common.ErrorMessages.Appointment;
+
 [Authorize]
 public class AppointmentController : Controller
 {
@@ -27,7 +29,7 @@ public class AppointmentController : Controller
         _serviceService = serviceService;
         _carService = carService;
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -35,6 +37,7 @@ public class AppointmentController : Controller
         {
             return Forbid();
         }
+
         string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userId))
@@ -42,8 +45,8 @@ public class AppointmentController : Controller
             return Challenge();
         }
 
-       IEnumerable<AppointmentGetAllDto> appointmentsDto =
-           await _appointmentService.GetAllAsync(userId);
+        IEnumerable<AppointmentGetAllDto> appointmentsDto =
+            await _appointmentService.GetAllAsync(userId);
 
         IEnumerable<AppointmentGetAllViewModel> appointments = appointmentsDto
             .Select(a => new AppointmentGetAllViewModel
@@ -59,7 +62,7 @@ public class AppointmentController : Controller
 
         return View(appointments);
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
@@ -67,6 +70,7 @@ public class AppointmentController : Controller
         {
             return Forbid();
         }
+
         string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         if (string.IsNullOrEmpty(userId))
@@ -94,8 +98,8 @@ public class AppointmentController : Controller
 
         return View(appointment);
     }
-    
-    
+
+
     [HttpGet]
     public async Task<IActionResult> Create(int serviceId)
     {
@@ -120,7 +124,7 @@ public class AppointmentController : Controller
 
         IEnumerable<CarGetAllDto> cars = await _carService.GetAllAsync(userId);
 
-        
+
         AppointmentCreateViewModel model = new()
         {
             ServiceId = serviceId,
@@ -134,7 +138,7 @@ public class AppointmentController : Controller
 
         return View(model);
     }
-    
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(AppointmentCreateViewModel model)
@@ -163,7 +167,7 @@ public class AppointmentController : Controller
 
             bool created = await _appointmentService.CreateAsync(dto, userId);
 
-            
+
             if (created)
             {
                 return RedirectToAction(nameof(Index));
@@ -173,8 +177,7 @@ public class AppointmentController : Controller
                 string.Empty,
                 CreateFailed);
         }
-        
-        
+
 
         var service = await _serviceService.GetByIdAsync(model.ServiceId);
 
@@ -195,8 +198,8 @@ public class AppointmentController : Controller
 
         return View(model);
     }
-    
-    
+
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Cancel(int id)

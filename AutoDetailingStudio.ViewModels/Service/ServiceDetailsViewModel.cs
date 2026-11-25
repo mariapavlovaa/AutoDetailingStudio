@@ -1,4 +1,4 @@
-namespace AutoDetailingStudio.Web.Models.Service;
+namespace AutoDetailingStudio.ViewModels.Service;
 
 public class ServiceDetailsViewModel
 {

@@ -1,7 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+
 namespace AutoDetailingStudio.ViewModels.Service;
+
 using static AutoDetailingStudio.Common.EntityValidation.Service;
 using static AutoDetailingStudio.Common.ErrorMessages.Service;
+
 public class ServiceCreateViewModel
 {
     [Required(ErrorMessage = NameRequired)]

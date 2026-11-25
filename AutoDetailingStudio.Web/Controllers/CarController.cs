@@ -1,7 +1,7 @@
 using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Car.Request;
-using AutoDetailingStudio.Services.Data.Car.Responce;
+using AutoDetailingStudio.Services.Data.Car.Response;
 using AutoDetailingStudio.ViewModels.Car;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,6 @@ namespace AutoDetailingStudio.Web.Controllers;
 [Authorize]
 public class CarController : Controller
 {
-    
     private readonly ICarService _carService;
     private readonly UserManager<User> _userManager;
 
@@ -31,6 +30,7 @@ public class CarController : Controller
         {
             return Forbid();
         }
+
         string? userId = _userManager.GetUserId(User);
 
         if (userId == null)
@@ -60,6 +60,7 @@ public class CarController : Controller
         {
             return Forbid();
         }
+
         string? userId = _userManager.GetUserId(User);
 
         if (userId == null)
@@ -85,7 +86,7 @@ public class CarController : Controller
 
         return View(model);
     }
-    
+
     [HttpGet]
     public IActionResult Create()
     {
@@ -129,7 +130,7 @@ public class CarController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
@@ -206,8 +207,8 @@ public class CarController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
-    
+
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
@@ -233,5 +234,4 @@ public class CarController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    
 }

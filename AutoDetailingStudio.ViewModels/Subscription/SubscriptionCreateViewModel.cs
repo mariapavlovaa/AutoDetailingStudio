@@ -1,10 +1,11 @@
-
 using System.ComponentModel.DataAnnotations;
 using AutoDetailingStudio.Common;
 
 namespace AutoDetailingStudio.ViewModels.Subscription;
+
 using static EntityValidation.Subscription;
 using static AutoDetailingStudio.Common.ErrorMessages.Subscription;
+
 public class SubscriptionCreateViewModel
 {
     [Required(ErrorMessage = NameRequired)]

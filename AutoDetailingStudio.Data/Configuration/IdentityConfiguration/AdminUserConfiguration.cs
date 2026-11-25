@@ -19,14 +19,11 @@ public class AdminUserConfiguration : IEntityTypeConfiguration<User>
             FirstName = "System",
             LastName = "Administrator",
             SecurityStamp = "admin-security-stamp",
-            ConcurrencyStamp = "admin-concurrency-stamp", 
+            ConcurrencyStamp = "admin-concurrency-stamp",
             PasswordHash = "AQAAAAIAAYagAAAAECj4mF/MvU2l4sPYabNt6j/1+dfZtBSSs7zbcAmBf47xv1a1uvkb56ixiuOuXppU8Q=="
         };
 
-      
-        builder.HasData(admin);
-        
-        
 
+        builder.HasData(admin);
     }
 }

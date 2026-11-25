@@ -4,9 +4,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AutoDetailingStudio.Data.Configuration;
 
-public class ServiceConfiguration:IEntityTypeConfiguration<Service>
+public class ServiceConfiguration : IEntityTypeConfiguration<Service>
 {
-    
     private readonly List<Service> services = new List<Service>
     {
         new Service
@@ -71,7 +70,7 @@ public class ServiceConfiguration:IEntityTypeConfiguration<Service>
         }
     };
 
-    
+
     public void Configure(EntityTypeBuilder<Service> builder)
     {
         builder.HasData(services);

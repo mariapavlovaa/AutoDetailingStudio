@@ -11,7 +11,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
-                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+                          throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -22,12 +22,9 @@ builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options =>
-    {
-        ConfigureIdentityOptions(options, builder.Configuration);
-    })
+builder.Services.AddDefaultIdentity<User>(options => { ConfigureIdentityOptions(options, builder.Configuration); })
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();  
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
 
@@ -88,11 +85,10 @@ static void ConfigureIdentityOptions(IdentityOptions options,
 
     options.User.RequireUniqueEmail =
         configuration.GetValue<bool>("Identity:User:RequireUniqueEmail");
-    
+
     options.Password.RequireDigit =
         configuration.GetValue<bool>("Identity:Password:RequireDigit");
 
     options.SignIn.RequireConfirmedAccount =
         configuration.GetValue<bool>("Identity:SignIn:RequireConfirmedAccount");
-    
 }

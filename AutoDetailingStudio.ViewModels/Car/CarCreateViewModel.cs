@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 using AutoDetailingStudio.Data.Models.Enums;
 
 namespace AutoDetailingStudio.ViewModels.Car;
+
 using static AutoDetailingStudio.Common.EntityValidation.Car;
 using static AutoDetailingStudio.Common.ErrorMessages.Car;
+
 public class CarCreateViewModel
 {
     [Required(ErrorMessage = BrandRequired)]

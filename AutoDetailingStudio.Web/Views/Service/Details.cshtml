@@ -1,4 +1,4 @@
-@model AutoDetailingStudio.Web.Models.Service.ServiceDetailsViewModel
+@model AutoDetailingStudio.ViewModels.Service.ServiceDetailsViewModel
 
 @{
     ViewData["Title"] = Model.Name;
@@ -18,7 +18,7 @@
             <div class="details-image-wrapper">
                 <img src="@(Model.ImageUrl ?? "/images/placeholder.jpg")"
                      alt="@Model.Name"
-                     class="details-image" />
+                     class="details-image"/>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
                         </span>
                     </div>
                 </div>
-                
+
                 @if (User.Identity?.IsAuthenticated == true && !User.IsInRole("Admin"))
                 {
                     <a asp-controller="Appointment"
@@ -64,7 +64,7 @@
                         Book Now
                     </a>
                 }
-                
+
                 @if (User.IsInRole("Admin"))
                 {
                     <div class="d-flex gap-3 mt-4">

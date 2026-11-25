@@ -232,7 +232,7 @@ namespace AutoDetailingStudio.Data.Migrations
                         {
                             Id = 1,
                             Description = "Basic car care subscription with a 5% discount on all services.",
-                            DiscountPercent = 5.00m,
+                            DiscountPercent = 0.05m,
                             IsActive = true,
                             Name = "Basic",
                             Price = 29.99m
@@ -241,7 +241,7 @@ namespace AutoDetailingStudio.Data.Migrations
                         {
                             Id = 2,
                             Description = "Premium car care subscription with a 10% discount on all services.",
-                            DiscountPercent = 10.00m,
+                            DiscountPercent = 0.10m,
                             IsActive = true,
                             Name = "Premium",
                             Price = 59.99m
@@ -250,7 +250,7 @@ namespace AutoDetailingStudio.Data.Migrations
                         {
                             Id = 3,
                             Description = "VIP car care subscription with a 20% discount on all services.",
-                            DiscountPercent = 20.00m,
+                            DiscountPercent = 0.20m,
                             IsActive = true,
                             Name = "VIP",
                             Price = 99.99m

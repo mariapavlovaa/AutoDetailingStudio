@@ -1,11 +1,14 @@
 using AutoDetailingStudio.Data;
+using AutoDetailingStudio.Data.Models;
 using AutoDetailingStudio.Services.Core.Contracts;
 using AutoDetailingStudio.Services.Data.Car.Request;
-using AutoDetailingStudio.Services.Data.Car.Responce;
+using AutoDetailingStudio.Services.Data.Car.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutoDetailingStudio.Services.Core;
+
 using static AutoDetailingStudio.Common.ApplicationConstants;
+
 public class CarService : ICarService
 {
     private readonly ApplicationDbContext _context;
@@ -51,7 +54,7 @@ public class CarService : ICarService
 
         return car;
     }
-    
+
     public async Task CreateAsync(CarCreateDto model, string userId)
     {
         Car car = new Car
@@ -65,7 +68,7 @@ public class CarService : ICarService
         await _context.Cars.AddAsync(car);
         await _context.SaveChangesAsync();
     }
-    
+
     public async Task<bool> EditAsync(CarEditDto model, string userId)
     {
         Car? car = await _context.Cars
@@ -84,6 +87,7 @@ public class CarService : ICarService
 
         return true;
     }
+
     public async Task<bool> DeleteAsync(int id, string userId)
     {
         Car? car = await _context.Cars
@@ -99,5 +103,4 @@ public class CarService : ICarService
 
         return true;
     }
-    
 }
